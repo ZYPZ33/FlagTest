@@ -13,6 +13,7 @@ imageName = choice(listdir(directory))
 image = directory + imageName
 
 app = App(title="Guess the Flag", width=300, height=400)
+Text(app, imageName.strip(".jpg"))
 
 flag = Picture(app, image, width=150, height=100)
 Text(app, "What country is this flag?")
