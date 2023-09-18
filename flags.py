@@ -16,7 +16,7 @@ def makeWidget(imageName, image):
     flag = Picture(app, image, width=150, height=100)
     Text(app, "What country does this flag represent?")
     inputData = TextBox(app)
-    PushButton(app, text="Submit", command=guess)
+    PushButton(app, text="Submit", command=guess) # stuck here
     app.display()
 
 
