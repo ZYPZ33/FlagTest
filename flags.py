@@ -3,12 +3,18 @@ from guizero import App, Picture, Text, TextBox, PushButton
 from random import choice
 from os import listdir
 
+
+def guess():
+    return True
+
+
 directory = "flags/"
-image = directory + choice(listdir(directory))
+imageName = choice(listdir(directory))
+image = directory + imageName
 
 app = App(title="Guess the Flag", width=300, height=400)
 
-flag = Picture(app, image)
+flag = Picture(app, image, width=150, height=100)
 Text(app, "What country is this flag?")
 
 inputData = TextBox(app)
