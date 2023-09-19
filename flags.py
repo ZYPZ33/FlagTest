@@ -41,11 +41,11 @@ def guess():
             turns -= 1
         else:
             label.value = "Game over"
-        scores.value = f"Score: {points} Turns:{turns}"
+        scores.value = f"Score: {points} | Turns:{turns}"
 
 
 app = App(title="Guess the Flag", width=300, height=400)
-scores = Text(app, f"Score: {points} Turns:{turns}")
+scores = Text(app, f"Score: {points} | Turns:{turns}")
 # cheat = Text(app, imageName.strip(".jpg"))
 flag = Picture(app, image, width=150, height=100)
 label = Text(app, "What country does this flag represent?")
