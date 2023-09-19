@@ -5,6 +5,7 @@ from os import listdir
 
 directory = "flags/"
 points = 0
+turns = 10
 
 images = listdir(directory)
 
@@ -14,8 +15,8 @@ image = directory + imageName
 
 
 def guess():
-    global imageName, points, images
-    if inputData.value.lower() == imageName.strip(".jpg").lower():
+    global imageName, images, points, turns
+    if inputData.value.lower() == imageName.strip(".jpg").lower() and turns != 0:
         if len(images) > 0:
             imageName = choice(images)
             images.remove(imageName)
@@ -29,14 +30,22 @@ def guess():
             button.destroy()
             label.value = "You got all the flags right!"
         points += 1
-        scores.value = f"Score: {points}"
+        scores.value = f"Score: {points} Turns:{turns}"
         inputData.value = ""
     else:
-        label.value = "Try again"
+        if turns == 1:
+            turns -= 1
+            label.value = "Game over"
+        elif turns > 1:
+            label.value = "Try again"
+            turns -= 1
+        else:
+            label.value = "Game over"
+        scores.value = f"Score: {points} Turns:{turns}"
 
 
 app = App(title="Guess the Flag", width=300, height=400)
-scores = Text(app, f"Score: {points}")
+scores = Text(app, f"Score: {points} Turns:{turns}")
 # cheat = Text(app, imageName.strip(".jpg"))
 flag = Picture(app, image, width=150, height=100)
 label = Text(app, "What country does this flag represent?")
