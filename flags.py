@@ -3,34 +3,43 @@ from guizero import App, Picture, Text, TextBox, PushButton
 from random import choice
 from os import listdir
 
+directory = "flags/"
+points = 0
 
-def setImageName(directory):
-    imageName = choice(listdir(directory))
-    image = directory + imageName
-    return [imageName, image]
+images = listdir(directory)
 
-
-def makeWidget(imageName, image):
-    app = App(title="Guess the Flag", width=300, height=400)
-    Text(app, imageName.strip(".jpg"))  # cheat
-    flag = Picture(app, image, width=150, height=100)
-    Text(app, "What country does this flag represent?")
-    inputData = TextBox(app)
-    PushButton(app, text="Submit", command=guess) # stuck here
-    app.display()
+imageName = choice(images)
+images.remove(imageName)
+image = directory + imageName
 
 
-def guess(inputData, imageName):
+def guess():
+    global imageName, points, images
     if inputData.value.lower() == imageName.strip(".jpg").lower():
-        print("correct!")
+        if len(images) > 0:
+            imageName = choice(images)
+            images.remove(imageName)
+            flag.image = directory + imageName
+            # cheat.value = imageName.strip(".jpg")
+            label.value = "What country does this flag represent?"
+        else:
+            flag.destroy()
+            # cheat.destroy()
+            inputData.destroy()
+            button.destroy()
+            label.value = "You got all the flags right!"
+        points += 1
+        scores.value = f"Score: {points}"
+        inputData.value = ""
     else:
-        print("Try again!")
+        label.value = "Try again"
 
 
-def runGame():
-    vars = setImageName("flags/")
-    makeWidget(vars[0], vars[1])
-
-
-if __name__ == "__main__":
-    runGame()
+app = App(title="Guess the Flag", width=300, height=400)
+scores = Text(app, f"Score: {points}")
+# cheat = Text(app, imageName.strip(".jpg"))
+flag = Picture(app, image, width=150, height=100)
+label = Text(app, "What country does this flag represent?")
+inputData = TextBox(app)
+button = PushButton(app, text="Submit", command=guess)  # stuck here
+app.display()
