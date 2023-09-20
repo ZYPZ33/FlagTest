@@ -35,12 +35,12 @@ def guess(inputData, imageName, flag, label, cheat, turncount, scores, points):
             print(turncount.value)
             label.value = "Try again"
             turncount.value = int(turncount.value) - 1
-        scores.value = f"Score: {points} | Turns:{turncount.value}"
+        scores.value = f"Score: {points} | Turns: {turncount.value}"
 
 
 def runGame(points, turns):
     app = App(title="Guess the Flag", width=300, height=400)
-    scores = Text(app, f"Score: {points} | Turns:{turns}")
+    scores = Text(app, f"Score: {points} | Turns: {turns}")
     turncount = Text(app, turns)
     turncount.hide()
     cheat = Text(app, imageName.strip(".jpg"))

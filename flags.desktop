@@ -3,3 +3,7 @@ Type=Application
 Name=Flags Test
 Exec=flagsGame
 Categories=Game
+
+[Desktop Action run-with-cheats]
+Name=Run with cheats
+Exec=flagsGame -l
