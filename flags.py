@@ -29,7 +29,7 @@ def guess(inputData, imageName, flag, label, cheat, turncount, scores, points):
     else:
         if turncount.value <= "1":
             turncount.value = int(turncount.value) - 1
-            label.value = "Game over\nAnswer was: ", cheat.value()
+            label.value = "Game over\nAnswer was: " + cheat.value
             inputData.destroy()
         else:
             label.value = "Try again"
@@ -67,4 +67,11 @@ def runGame(points, turns):
 
 
 if __name__ == "__main__":
+    if "-h" in argv or "--help" in argv:
+        print(
+            "Usage: flagsGame OPTION...\n\
+        -h\t--help\tPrint this help message\n\
+        -c\t--cheat\tShow the answers to questions"
+        )
+        exit()
     runGame(0, 10)
