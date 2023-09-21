@@ -29,10 +29,9 @@ def guess(inputData, imageName, flag, label, cheat, turncount, scores, points):
     else:
         if turncount.value <= "1":
             turncount.value = int(turncount.value) - 1
-            label.value = "Game over\nAnswer was: " + imageName.strip(".jpg")
+            label.value = "Game over\nAnswer was: ", cheat.value()
             inputData.destroy()
         else:
-            print(turncount.value)
             label.value = "Try again"
             turncount.value = int(turncount.value) - 1
         scores.value = f"Score: {points} | Turns: {turncount.value}"
