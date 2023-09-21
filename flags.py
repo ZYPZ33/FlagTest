@@ -43,7 +43,7 @@ def runGame(points, turns):
     turncount = Text(app, turns)
     turncount.hide()
     cheat = Text(app, imageName.strip(".jpg"))
-    if "-l" not in argv:
+    if "-c" not in argv:
         cheat.hide()
     flag = Picture(app, image, width=150, height=100)
     label = Text(app, "What country does this flag represent?")
